@@ -1,0 +1,28 @@
+id: "categorical_embedding"
+env:
+  result_dir: 'results'
+  solver: 'pytorch_tabular'
+  random_seed: 0
+  save_preds: True
+data:
+  name: "coupon_data"
+  params:
+    data_dir: 'dataset'
+
+    embed_categoricals: False
+
+model:
+  name: "CategoryEmbeddingModelConfig"
+  params:
+    task: 'classification'
+    layers: '1024-512-512'
+    activation: 'LeakyReLU'
+    learning_rate: 1e-3
+
+trainer:
+  name: 'Trainer'
+  params:
+    auto_lr_find: True
+    batch_size: 1024
+    max_epochs: 100
+    gpus: 1

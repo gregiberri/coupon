@@ -1,3 +1,4 @@
+import pytorch_tabular
 import sklearn
 import torchvision.models as torch_models
 import xgboost
@@ -25,6 +26,9 @@ def get_model(model_config):
         return function(**config_params)
     if hasattr(xgboost, model_config.name):
         function = getattr(xgboost, model_config.name)
+        return function(**model_config.params.dict())
+    if hasattr(pytorch_tabular.models, model_config.name):
+        function = getattr(pytorch_tabular.models, model_config.name)
         return function(**model_config.params.dict())
     else:
         raise ValueError(f'Wrong model name in model configs: {model_config.name}')

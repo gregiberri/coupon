@@ -6,7 +6,7 @@ from contextlib import contextmanager
 
 from config import ConfigNamespace
 from ml.hpo import get_hpo_algorithm
-from ml.solvers.base_solver import Solver
+from ml.solvers.decision_tree_solver import DecisionTreeSolver
 
 
 class HPOSolver(object):
@@ -82,7 +82,7 @@ class HPOSolver(object):
         config.id = os.path.join(config.id, 'hpo_outputs')
 
         with suppress_stdout():  # do not print out the Solvers` output
-            solver = Solver(config, args)
+            solver = DecisionTreeSolver(config, args)
             metric = solver.run()
 
         tune.report(metric)

@@ -16,16 +16,21 @@ class CouponDataloader:
         self.split = split
 
         self.data = self.load_data()
-        self.embed_categoricals()
+        if self.config.embed_categoricals: self.embed_categoricals()
 
         # make numpy arrays to train
-        self.outputs = self.data.Y.to_numpy()
-        inputs_pd = self.data.drop(columns=['Y', 'Unnamed: 0'])
-        self.inputs = inputs_pd.to_numpy()
+        self.pd_outputs = self.data.Y
+        self.outputs = self.pd_outputs.to_numpy()
+        self.pd_inputs = self.data.drop(columns=['Y', 'Unnamed: 0'])
+        self.inputs = self.pd_inputs.to_numpy()
 
     @property
     def full_data(self):
         return self.inputs, self.outputs
+
+    @property
+    def full_pd_data(self):
+        return self.pd_inputs, self.pd_outputs
 
     def load_data(self):
         """

@@ -1,20 +1,15 @@
 id: "random_forest"
 env:
   result_dir: 'results'
+  solver: 'decision_tree'
   random_seed: 0
   save_preds: False
-metrics:
-  goal_metric: 'F1'
-  save_metrics:
-    Accuracy: {num_classes: 10, average: 'macro'}
-    Precision: {num_classes: 10, average: 'macro'}
-    Recall: {num_classes: 10, average: 'macro'}
-    F1: {num_classes: 10, average: 'macro'}
 data:
   name: "coupon_data"
   params:
     data_dir: 'dataset'
 
+    embed_categoricals: True
     ordinal_embedding_columns: ['time', 'expiration', 'age',
                                 'education', 'income', 'Bar', 'CoffeeHouse',
                                 'CarryAway', 'RestaurantLessThan20', 'Restaurant20To50',
