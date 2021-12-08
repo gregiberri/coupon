@@ -24,6 +24,7 @@ dependencies:
   - tqdm=4.62.3
   - cudatoolkit=11.3
   - notebook
+  - xgboost
   - pip:
       - hyperopt==0.2.5
       - pytorch-ranger==0.1.1
@@ -36,3 +37,4 @@ dependencies:
       - HEBO
       - nevergrad
       - scikit-optimize
+      - pytorch_tabular

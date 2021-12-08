@@ -1,0 +1,41 @@
+id: "random_forest"
+env:
+  result_dir: 'results'
+  random_seed: 0
+  save_preds: False
+metrics:
+  goal_metric: 'F1'
+  save_metrics:
+    Accuracy: {num_classes: 10, average: 'macro'}
+    Precision: {num_classes: 10, average: 'macro'}
+    Recall: {num_classes: 10, average: 'macro'}
+    F1: {num_classes: 10, average: 'macro'}
+data:
+  name: "coupon_data"
+  params:
+    data_dir: 'dataset'
+
+    ordinal_embedding_columns: ['time', 'expiration', 'age',
+                                'education', 'income', 'Bar', 'CoffeeHouse',
+                                'CarryAway', 'RestaurantLessThan20', 'Restaurant20To50',
+                                'toCoupon']
+    one_hot_embedding_columns: ['destination', 'passanger', 'weather', 'coupon', 'gender',
+                                'maritalStatus', 'occupation']
+
+model:
+  name: "RandomForestClassifier"
+  params:
+    n_estimators: 100
+    criterion: 'gini'
+    max_depth: null
+    min_samples_split: 2
+    min_samples_leaf: 1
+    min_weight_fraction_leaf: 0.0
+    max_features: 'auto'
+    max_leaf_nodes: null
+    min_impurity_decrease: 0.0
+    bootstrap: True
+    n_jobs: 6
+    random_state: 0
+    warm_start: False
+    max_samples: null
