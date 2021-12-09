@@ -16,7 +16,7 @@ class CouponDataloader:
         self.split = split
 
         self.data = self.load_data()
-        if self.config.embed_categoricals: self.embed_categoricals()
+        self.embed_categoricals()
 
         # make numpy arrays to train
         self.pd_outputs = self.data.Y
@@ -75,6 +75,6 @@ class CouponDataloader:
         """
         Embed categorical columns to ordinal or one_hot embedding.
         """
-        self.data = make_ordinal(self.data, self.config.ordinal_embedding_columns)
-        self.data = make_one_hot(self.data, self.config.one_hot_embedding_columns)
+        if self.config.ordinal_embed: self.data = make_ordinal(self.data, self.config.ordinal_embedding_columns)
+        if self.config.one_hot_embed: self.data = make_one_hot(self.data, self.config.one_hot_embedding_columns)
 

@@ -27,7 +27,7 @@ class Solver(ABC):
         self.load_model()
 
     def init_results_dir(self):
-        self.result_dir = os.path.join(self.config.env.result_dir, self.config.id)
+        self.result_dir = os.path.join(self.config.env.result_dir, self.config.id, self.args.id_tag)
         if not os.path.exists(self.result_dir):
             os.makedirs(self.result_dir)
 

@@ -9,7 +9,12 @@ data:
   params:
     data_dir: 'dataset'
 
-    embed_categoricals: False
+    ordinal_embed: True
+    one_hot_embed: False
+    ordinal_embedding_columns: ['time', 'expiration', 'age',
+                                'education', 'income', 'Bar', 'CoffeeHouse',
+                                'CarryAway', 'RestaurantLessThan20', 'Restaurant20To50',
+                                'toCoupon']
 
 model:
   name: "CategoryEmbeddingModelConfig"

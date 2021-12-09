@@ -15,7 +15,7 @@ class PytorchTabularSolver(Solver):
             target=['Y'],
             # target should always be a list. Multi-targets are only supported for regression. Multi-Task Classification is not implemented
             continuous_cols=list(self.val_loader.full_pd_data[0].select_dtypes(include=['int64']).columns),
-            categorical_cols=list(self.val_loader.full_pd_data[0].select_dtypes(include=['object']).columns),
+            categorical_cols=list(self.val_loader.full_pd_data[0].select_dtypes(include=['object', 'uint8']).columns),
             validation_split=0.0)
         trainer_config = TrainerConfig(**self.config.trainer.params.dict())  # index of the GPU to use. 0, means CPU
         optimizer_config = OptimizerConfig()
