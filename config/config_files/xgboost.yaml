@@ -9,6 +9,8 @@ data:
   params:
     data_dir: 'dataset'
 
+    remove_nans: True
+
     ordinal_embed: True
     one_hot_embed: True
     ordinal_embedding_columns: ['time', 'expiration', 'age',
@@ -22,3 +24,4 @@ model:
   name: "XGBClassifier"
   params:
     max_depth: null
+    n_estimators: 100

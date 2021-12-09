@@ -2,11 +2,11 @@ import os
 import sys
 
 from ray import tune
-from contextlib import contextmanager
 
 from config import ConfigNamespace
 from ml.hpo import get_hpo_algorithm
 from ml.solvers.decision_tree_solver import DecisionTreeSolver
+from utils.suppress_stdout import suppress_stdout
 
 
 class HPOSolver(object):
@@ -43,8 +43,11 @@ class HPOSolver(object):
                           queue_trials=True, local_dir=ray_result_dir,
                           resources_per_trial={"cpu": self.config.hpo.cpu_per_trial,
                                                "gpu": self.config.hpo.gpu_per_trial},
-                          search_alg=search_alg)
+                          search_alg=search_alg,
+                          metric='_metric',
+                          mode=self.config.hpo.hpo_algorithm.params.mode)
 
+        self.report_result(result)
 
     def report_result(self, result):
         """
@@ -52,7 +55,7 @@ class HPOSolver(object):
 
         :param result: result file from the tune run
         """
-        best_trial = result.get_best_trial('accuracy', 'max', 'last')
+        best_trial = result.get_best_trial('_metric', 'max', 'last')
         print("Best trial config: {}".format(best_trial.logdir))
         print("Best trial final validation accuracy: {}".format(best_trial.last_result['_metric']))
 
@@ -89,12 +92,3 @@ class HPOSolver(object):
         return metric
 
 
-@contextmanager
-def suppress_stdout():
-    with open(os.devnull, "w") as devnull:
-        old_stdout = sys.stdout
-        sys.stdout = devnull
-        try:
-            yield
-        finally:
-            sys.stdout = old_stdout

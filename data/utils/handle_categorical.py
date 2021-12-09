@@ -1,14 +1,14 @@
 import pandas as pd
 
-time_dict = {'7AM': 0, '10AM': 1, '2PM': 2, '6PM': 3, '10PM': 4}
-expiration_dict = {'2h': 0, '1d': 1}
-age_dict = {'below21': 0, '21': 1, '26': 2, '31': 3, '36': 4, '41': 5, '46': 6, '50plus': 7}
-education_dict = {'Some High School': 0, 'High School Graduate': 1, 'Associates degree': 2,
+time_dict = {'nan': -1, '7AM': 0, '10AM': 1, '2PM': 2, '6PM': 3, '10PM': 4}
+expiration_dict = {'nan': -1, '2h': 0, '1d': 1}
+age_dict = {'nan': -1, 'below21': 0, '21': 1, '26': 2, '31': 3, '36': 4, '41': 5, '46': 6, '50plus': 7}
+education_dict = {'nan': -1, 'Some High School': 0, 'High School Graduate': 1, 'Associates degree': 2,
                   'Some college - no degree': 3, 'Bachelors degree': 4, 'Graduate degree (Masters or Doctorate)': 5}
-income_dict = {'Less than $12500': 0, '$12500 - $24999': 1, '$25000 - $37499': 2, '$37500 - $49999': 3,
+income_dict = {'nan': -1, 'Less than $12500': 0, '$12500 - $24999': 1, '$25000 - $37499': 2, '$37500 - $49999': 3,
                '$50000 - $62499': 4, '$62500 - $74999': 5, '$75000 - $87499': 6, '$87500 - $99999': 7,
                '$100000 or More': 8}
-bars_dict = {'never': 0, 'less1': 1, r'1~3': 2, r'4~8': 3, 'gt8': 4}
+bars_dict = {'nan': -1, 'never': 0, 'less1': 1, r'1~3': 2, r'4~8': 3, 'gt8': 4}
 ordinal_dict = {'time': time_dict,
                 'expiration': expiration_dict,
                 'age': age_dict,

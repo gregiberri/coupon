@@ -18,7 +18,7 @@ class DecisionTreeSolver(Solver):
         Training the tree based networks.
         Save the model if it has better performance than the previous ones.
         """
-        self.model.fit(*self.train_loader.full_data)
+        self.model.fit(*self.train_loader.data)
 
         # save model
         with open(os.path.join(self.result_dir, 'model.pkl'), 'wb') as f:
@@ -31,8 +31,8 @@ class DecisionTreeSolver(Solver):
         """
         Evaluate the model.
         """
-        preds = self.model.predict(self.val_loader.full_data[0])
-        gt = self.val_loader.full_data[1]
+        preds = self.model.predict(self.val_loader.data[0])
+        gt = self.val_loader.data[1]
 
         self.accuracy = accuracy_score(gt, preds)
         print(self.accuracy)
@@ -48,7 +48,7 @@ class DecisionTreeSolver(Solver):
 
         # plot feature importance
         plt.figure(figsize=(20, 10))
-        bars = plt.bar(self.val_loader.full_pd_data[0].columns, importance)
+        bars = plt.bar(self.val_loader.df_data[0].columns, importance)
         plt.title('feature importances')
         plt.xticks(rotation=90)
         for bar in bars:

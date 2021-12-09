@@ -15,21 +15,22 @@ class CouponDataloader:
         self.config = config
         self.split = split
 
-        self.data = self.load_data()
+        self.df = self.load_data()
+        self.handle_nans()
         self.embed_categoricals()
 
         # make numpy arrays to train
-        self.pd_outputs = self.data.Y
+        self.pd_outputs = self.df.Y
         self.outputs = self.pd_outputs.to_numpy()
-        self.pd_inputs = self.data.drop(columns=['Y', 'Unnamed: 0'])
+        self.pd_inputs = self.df.drop(columns=['Y', 'Unnamed: 0'])
         self.inputs = self.pd_inputs.to_numpy()
 
     @property
-    def full_data(self):
+    def data(self):
         return self.inputs, self.outputs
 
     @property
-    def full_pd_data(self):
+    def df_data(self):
         return self.pd_inputs, self.pd_outputs
 
     def load_data(self):
@@ -61,20 +62,33 @@ class CouponDataloader:
             raise ValueError(f'The coupon_data file does not exists at {coupons_filepath}')
 
         df = pd.read_csv(coupons_filepath)
-        # drop missing values
+
+        # drop index to avoid doubleing
         df.drop(columns=['Unnamed: 0'], inplace=True)
-        df.drop(columns='car', inplace=True)
-        df.dropna(inplace=True)
-        df.drop(columns='direction_opp', inplace=True)
 
         train, val = train_test_split(df, test_size=0.33)
         train.to_csv(os.path.join(self.config.data_dir, 'train.csv'))
         val.to_csv(os.path.join(self.config.data_dir, 'val.csv'))
 
+    def handle_nans(self):
+        """
+        Either delete or fill nans (with `nan`)
+        :return:
+        """
+        # drop direction_opp as it is the same as direction_same
+        self.df.drop(columns='direction_opp', inplace=True)
+
+        if self.config.remove_nans:
+            # drop missing values
+            self.df.drop(columns='car', inplace=True)
+            self.df.dropna(inplace=True)
+        else:
+            self.df.fillna('nan', inplace=True)
+
     def embed_categoricals(self):
         """
         Embed categorical columns to ordinal or one_hot embedding.
         """
-        if self.config.ordinal_embed: self.data = make_ordinal(self.data, self.config.ordinal_embedding_columns)
-        if self.config.one_hot_embed: self.data = make_one_hot(self.data, self.config.one_hot_embedding_columns)
+        if self.config.ordinal_embed: self.df = make_ordinal(self.df, self.config.ordinal_embedding_columns)
+        if self.config.one_hot_embed: self.df = make_one_hot(self.df, self.config.one_hot_embedding_columns)
 

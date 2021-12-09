@@ -1,7 +1,7 @@
 id: "random_forest_hpo"
 base_config: 'random_forest'
 hpo:
-  num_samples: 1000
+  num_samples: 100
   cpu_per_trial: 2
   gpu_per_trial: 0.15
   hpo_algorithm:
@@ -14,7 +14,7 @@ model:
   params:
     n_estimators: ['uniform', [5, 1000]]
     criterion: ['choice', [['gini', 'entropy']]]
-    max_depth: ['uniform', [1, 50]]
+    max_depth: ['uniform', [1, 100]]
     min_samples_split: ['uniform', [1, 25]]
     min_samples_leaf: ['uniform', [1, 25]]
     max_features: ['choice', [['auto', 'sqrt', 'log2']]]
