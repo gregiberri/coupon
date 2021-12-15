@@ -90,3 +90,8 @@ Feature importance:
 ##### feedforward network with category embedding
 HPO best result:
 **68.1%**
+
+&nbsp;
+##### TabNet
+HPO best result:
+**66.2%**
