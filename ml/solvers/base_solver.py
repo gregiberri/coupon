@@ -75,6 +75,10 @@ class Solver(ABC):
             wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
             wr.writerow(preds)
 
+    def save_acc(self):
+        with open(os.path.join(self.result_dir, 'accuracy.txt'), 'w') as myfile:
+            myfile.write(f'accuracy: {self.accuracy}')
+
     def train(self):
         raise NotImplementedError
 

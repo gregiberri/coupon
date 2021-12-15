@@ -43,6 +43,8 @@ class PytorchTabularSolver(Solver):
 
         self.eval()
 
+        self.save_acc()
+
     def eval(self):
         """
         Evaluate the model.

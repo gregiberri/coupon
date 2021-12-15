@@ -40,6 +40,8 @@ class DecisionTreeSolver(Solver):
         if self.config.env.save_preds:
             self.save_preds(preds)
 
+        self.save_acc()
+
     def save_feature_importances(self):
         """
         Save the feature importances bar chart to the result dir.
