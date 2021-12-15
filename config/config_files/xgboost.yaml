@@ -8,6 +8,7 @@ data:
   name: "coupon_data"
   params:
     data_dir: 'dataset'
+    filename: 'coupon_data.csv'
 
     remove_nans: True
 

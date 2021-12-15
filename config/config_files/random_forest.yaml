@@ -8,6 +8,9 @@ data:
   name: "coupon_data"
   params:
     data_dir: 'dataset'
+    filename: 'coupon_data.csv'
+
+    remove_nans: True
 
     ordinal_embed: True
     one_hot_embed: True
@@ -22,7 +25,7 @@ model:
   name: "RandomForestClassifier"
   params:
     n_estimators: 100
-    max_depth: 5
+    max_depth: 100
     criterion: 'gini'
     min_samples_split: 2
     min_samples_leaf: 1

@@ -60,21 +60,28 @@ For eval the  results dir ({result_dir}/{config_id}/{id_tag arg}) should contain
 
 #### Test
 For test the  results dir ({result_dir}/{config_id}/{id_tag arg}) should contain a model as 
-*model_best.pth.tar* or *model.pkl*. During test the predictions will be saved.\
-A pretrained model can be found in [here](https://drive.google.com/file/d/1sILKQ3MkCy7lSEOz8E7s3u5G5bJPpVzs/view?usp=sharing). 
-For simplicity it is recommended to copy it under *results/base/base* and just change the dataset path to yours in *config/config_files/test.yaml*.
+*model_best.pth.tar* or *model.pkl*. During test the predictions will be saved.
 > python run.py --config test --mode test
 
 #### HPO
 For hpo use:
 > python run.py --config base_hpo --mode hpo
 
-### Example of the results:
-HPO result:
-![Screenshot from 2021-11-16 01-07-55](https://user-images.githubusercontent.com/36601982/141872068-600b5cea-11d9-44d2-b84a-7566fa5df99c.png)
+### Results:
+##### random forest
+HPO best result:
+**73.3%**
 
-Confusion matrix:
-![confusion_matrix_val_40](https://user-images.githubusercontent.com/36601982/141871724-630f07af-82db-4c28-92f1-ca6d77bcba20.png)
+Feature importance:
 
-By class F1 score:
-![F1_val_40](https://user-images.githubusercontent.com/36601982/141871759-d975873a-a07f-4cb0-b2d3-f566982b461f.png)
+&nbsp;
+##### xgboost
+HPO best result:
+**75.0%**
+
+Feature importance:
+
+&nbsp;
+##### feedforward network with category embedding
+HPO best result:
+**68.1%**
