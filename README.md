@@ -73,6 +73,7 @@ HPO best result:
 **73.3%**
 
 Feature importance:
+![feature_importance](https://user-images.githubusercontent.com/36601982/146228317-f62d89bc-c04b-4492-b23d-82be6a53450a.png)
 
 &nbsp;
 ##### xgboost
@@ -80,6 +81,7 @@ HPO best result:
 **75.0%**
 
 Feature importance:
+![feature_importance](https://user-images.githubusercontent.com/36601982/146228368-7973b740-b86d-46e2-8008-b103eea37237.png)
 
 &nbsp;
 ##### feedforward network with category embedding
