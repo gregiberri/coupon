@@ -20,8 +20,11 @@ class CouponDataloader:
         self.embed_categoricals()
 
         # make numpy arrays to train
-        self.pd_outputs = self.df.Y
-        self.outputs = self.pd_outputs.to_numpy()
+        if not self.split == 'test':
+            self.pd_outputs = self.df.Y
+            self.outputs = self.pd_outputs.to_numpy()
+        else:
+            self.pd_outputs, self.outputs = None, None
         self.pd_inputs = self.df.drop(columns=['Y', 'Unnamed: 0'])
         self.inputs = self.pd_inputs.to_numpy()
 

@@ -32,15 +32,15 @@ class DecisionTreeSolver(Solver):
         Evaluate the model.
         """
         preds = self.model.predict(self.val_loader.data[0])
-        gt = self.val_loader.data[1]
 
-        self.accuracy = accuracy_score(gt, preds)
-        print(self.accuracy)
+        if not self.phase == 'test':
+            gt = self.val_loader.data[1]
+            self.accuracy = accuracy_score(gt, preds)
+            print(self.accuracy)
+            self.save_acc()
 
         if self.config.env.save_preds:
             self.save_preds(preds)
-
-        self.save_acc()
 
     def save_feature_importances(self):
         """

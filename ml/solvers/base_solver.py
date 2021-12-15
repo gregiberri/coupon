@@ -20,6 +20,8 @@ class Solver(ABC):
         self.phase = args.mode
         self.config = config
 
+        self.accuracy = 0
+
         # initialize the required elements for the ml problem
         self.init_results_dir()
         self.init_dataloaders()
