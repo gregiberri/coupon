@@ -20,7 +20,7 @@ logging.basicConfig(format='[%(asctime)s %(levelname)s] %(message)s',
 
 parser = argparse.ArgumentParser(description='Training script')
 parser.add_argument('--id_tag', type=str, default='base', help='Id of the training in addition of the config name')
-parser.add_argument('--mode', type=str, default='train', choices=['train', 'val', 'hpo'],
+parser.add_argument('--mode', type=str, default='train', choices=['train', 'val', 'test', 'hpo'],
                     help='The mode of the running.')
 parser.add_argument('-c', '--config', type=str, default='random_forest', help='Config file name')
 

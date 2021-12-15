@@ -50,8 +50,8 @@ class Solver(ABC):
         if self.phase == 'train':
             self.train_loader = get_dataloader(self.config.data, 'train')
             self.val_loader = get_dataloader(self.config.data, 'val')
-        elif self.phase == 'val':
-            self.val_loader = get_dataloader(self.config.data, 'val')
+        elif self.phase == 'val' or self.phase == 'test':
+            self.val_loader = get_dataloader(self.config.data, self.phase)
         else:
             raise ValueError(f'Wrong mode argument: {self.phase}. It should be `train`, `val` or `test`.')
 
@@ -63,7 +63,7 @@ class Solver(ABC):
         logging.info("Starting experiment.")
         if self.phase == 'train':
             self.train()
-        elif self.phase in 'val':
+        elif self.phase in ['val', 'test']:
             self.eval()
         else:
             raise ValueError(f'Wrong phase: {self.phase}. It should be `train`, `val`.')

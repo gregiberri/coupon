@@ -45,6 +45,8 @@ class CouponDataloader:
             filepath = os.path.join(self.config.data_dir, 'val.csv')
         elif self.split == 'train':
             filepath = os.path.join(self.config.data_dir, 'train.csv')
+        elif self.split == 'test':
+            filepath = os.path.join(self.config.data_dir, self.config.filename)
         else:
             raise ValueError(f'Wrong split: {self.split}.')
 
@@ -57,7 +59,7 @@ class CouponDataloader:
         """
         Split coupons_data.csv to train-val set and save to train.csv and val.csv
         """
-        coupons_filepath = os.path.join(self.config.data_dir, 'coupon_data.csv')
+        coupons_filepath = os.path.join(self.config.data_dir, self.config.filename)
         if not os.path.exists(coupons_filepath):
             raise ValueError(f'The coupon_data file does not exists at {coupons_filepath}')
 
