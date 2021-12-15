@@ -75,7 +75,9 @@ class Solver(ABC):
     def save_preds(self, preds):
         with open(os.path.join(self.result_dir, 'preds.csv'), 'w') as myfile:
             wr = csv.writer(myfile, quoting=csv.QUOTE_ALL)
-            wr.writerow(preds)
+            wr.writerow(['index', 'pred'])
+            indices = self.val_loader.pd_inputs.index.values.tolist()
+            wr.writerows(zip(indices, preds))
 
     def save_acc(self):
         with open(os.path.join(self.result_dir, 'accuracy.txt'), 'w') as myfile:
