@@ -1,6 +1,9 @@
 # Coupon acceptance prediction
 ### Introduction
-The main goal of this code is to make a predictive model for predicting whether someone will or will not accept coupons. The data used is a tabular data containing different factors during coupon offering, and whether the coupons were accepted or not.
+The main goal of this code is to make a predictive model for predicting whether 
+someone will or will not accept coupons. The data used is a tabular data 
+containing different factors during coupon offering, and whether the coupons 
+were accepted or not.
 
 ### Requirements
 The required packages can be found in *config/env_files/coupon_env.yml*. 
